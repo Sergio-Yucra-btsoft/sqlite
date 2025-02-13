@@ -1,19 +1,19 @@
 const path = require("path");
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 
 const isDev = process.env.IS_DEV == "true" ? true : false;
-
+let data = { message: 'Hola AAAAAAAAAAAA' };
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 650,
+    width: 1900,
+    height: 850,
     autoHideMenuBar: true,
     resizable: false,
     frame: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 
@@ -31,6 +31,9 @@ function createWindow() {
   if (isDev) {
     //mainWindow.webContents.openDevTools();
   }
+  ipcMain.handle('get-data', () => {
+    return data; 
+  });
 }
 
 app.whenReady().then(() => {
