@@ -5,7 +5,8 @@
   "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "start": "electron .",
+    "build": "electron-builder && vite build",
     "serve": "vite preview",
     "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
     "electron:pack": "electron-builder --dir",
@@ -25,26 +26,27 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
-"@babel/preset-env": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "@eslint/js": "^9.17.0",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "babel-jest": "^29.7.0",
+    "electron": "^34.0.1",
+    "electron-builder": "^25.1.8",
     "eslint": "^9.17.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "jest": "^29.7.0",
-    "vite": "^6.0.5",
-    "electron": "^34.0.1"
+    "vite": "^6.0.5"
   },
   "build": {
     "appId": "com.devname.package",
-    "productName": "Project Name",
-    "copyright": "Copyright © 2023 ${author}",
+    "productName": "React",
+    "copyright": "Copyright © 2023 Dante",
     "mac": {
       "category": "public.app-category.utilities"
     },
@@ -58,7 +60,7 @@
     ],
     "directories": {
       "buildResources": "assets",
-      "output": "dist_electron"
+      "output": "dist"
     }
   }
 }
