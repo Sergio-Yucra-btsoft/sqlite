@@ -17,6 +17,7 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "better-sqlite3": "^11.8.1",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "prop-types": "^15.8.1",

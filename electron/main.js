@@ -1,5 +1,7 @@
 const path = require("path");
 const { app, BrowserWindow, ipcMain } = require("electron");
+const dbPath = path.join(__dirname, '../mytest.db');
+const db = require('better-sqlite3')(dbPath);
 
 const isDev = process.env.IS_DEV == "true" ? true : false;
 let data = { message: 'Hola AAAAAAAAAAAA' };
@@ -32,7 +34,11 @@ function createWindow() {
     //mainWindow.webContents.openDevTools();
   }
   ipcMain.handle('get-data', () => {
-    return data; 
+    const sql = `
+        SELECT * FROM test
+    `
+    const rows = db.prepare(sql).all();
+    return rows; 
   });
 }
 
